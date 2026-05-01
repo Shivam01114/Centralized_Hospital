@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Contact | यकृत्‌दृष्टि AI</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='liver/css/style.css') }}">
+
+<style>
+/* ================= RESET ================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Inter","Segoe UI",sans-serif;
+}
+
+/* ================= COLORS ================= */
+:root{
+    --bg:#020812;
+    --blue:#2b7cff;
+    --cyan:#4cd3c2;
+    --red:#ff3b3b;
+    --text:#f1f6ff;
+    --muted:#9bbcff;
+}
+
+/* ================= BODY ================= */
+body{
+    background:radial-gradient(circle at top,#0b1d33,var(--bg) 70%);
+    color:var(--text);
+    overflow-x:hidden;
+}
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+      linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
+    background-size:40px 40px;
+    z-index:-1;
+}
+
+/* ================= NAVBAR ================= */
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:22px 60px;
+    background:rgba(5,15,30,.85);
+    backdrop-filter:blur(16px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+.navbar ul{
+    list-style:none;
+    display:flex;
+    gap:30px;
+}
+.navbar a{
+    color:#dbe7ff;
+    text-decoration:none;
+    font-weight:500;
+}
+.navbar a:hover{
+    color:#fff;
+    text-shadow:0 0 15px var(--blue),0 0 25px var(--red);
+}
+
+/* LOGO */
+.logo-main{
+    font-size:28px;
+    font-weight:800;
+    color:var(--red);
+    text-shadow:0 0 20px rgba(255,59,59,.9);
+}
+.logo-sub{
+    font-size:11px;
+    letter-spacing:2px;
+    color:var(--muted);
+}
+
+/* ================= WRAPPER ================= */
+.contact-wrapper{
+    max-width:1400px;
+    margin:auto;
+    padding:110px 50px;
+}
+
+/* ================= HERO ================= */
+.hero{
+    text-align:center;
+    margin-bottom:120px;
+}
+.hero h1{
+    font-size:58px;
+    font-weight:900;
+    text-shadow:0 0 30px rgba(43,124,255,.8),
+                0 0 50px rgba(255,59,59,.6);
+}
+.hero p{
+    margin-top:22px;
+    font-size:18px;
+    color:var(--muted);
+    max-width:900px;
+    margin-inline:auto;
+}
+
+/* ================= GRID ================= */
+.contact-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:50px;
+}
+
+/* ================= CARD ================= */
+.contact-card{
+    height:380px;
+    border-radius:34px;
+    background:linear-gradient(180deg,#071a33,#020a18);
+    border:1px solid rgba(255,255,255,.1);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:40px;
+    box-shadow:0 0 45px rgba(43,124,255,.4);
+    transition:.45s;
+    animation:pulse 6s infinite;
+}
+@keyframes pulse{
+    0%{box-shadow:0 0 40px rgba(43,124,255,.35);}
+    50%{box-shadow:0 0 90px rgba(255,59,59,.85);}
+    100%{box-shadow:0 0 40px rgba(43,124,255,.35);}
+}
+.contact-card:hover{
+    transform:translateY(-14px) scale(1.05);
+    animation-play-state:paused;
+}
+
+/* ================= ICON IMAGE ================= */
+.contact-icon{
+    width:64px;
+    height:64px;
+    object-fit:contain;
+    margin-bottom:28px;
+    filter:drop-shadow(0 0 18px rgba(255,255,255,.6));
+    transition:.4s;
+}
+.contact-card:hover .contact-icon{
+    transform:scale(1.2) rotate(-6deg);
+}
+
+/* ================= TEXT ================= */
+.contact-card h3{
+    font-size:26px;
+    color:var(--cyan);
+    margin-bottom:12px;
+}
+.contact-card p{
+    font-size:15px;
+    color:#dce6ff;
+    margin-bottom:34px;
+}
+
+/* ================= BUTTON ================= */
+.card-btn{
+    padding:15px 38px;
+    border-radius:50px;
+    background:linear-gradient(135deg,var(--red),var(--blue));
+    color:#fff;
+    text-decoration:none;
+    font-weight:800;
+    box-shadow:0 0 40px rgba(255,59,59,.75);
+}
+.card-btn:hover{
+    transform:scale(1.12);
+    box-shadow:0 0 70px rgba(43,124,255,.95);
+}
+
+/* ================= FOOTER ================= */
+.footer-note{
+    text-align:center;
+    margin-top:140px;
+    font-size:14px;
+    color:var(--muted);
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div>
+        <div class="logo-main">यकृत्‌दृष्टि</div>
+        <div class="logo-sub">AI Liver Diagnostic System</div>
+    </div>
+    <ul>
+        <li><a href="{{ url_for('main.home') }}">Home</a></li>
+        <li><a href="{{ url_for('liver.liver_home') }}">Predict</a></li>
+        <li><a href="{{ url_for('liver.liver_report') }}">Report</a></li>
+        <li><a href="{{ url_for('liver.liver_about') }}">About</a></li>
+    </ul>
+</nav>
+
+
+<div class="contact-wrapper">
+
+<!-- HERO -->
+<section class="hero">
+    <h1>Contact Yakrit Drishti AI</h1>
+    <p>
+        Collaborations • AI Research • Medical Innovation • Professional Networking
+    </p>
+</section>
+
+
+<!-- GRID -->
+<section class="contact-grid">
+
+<!-- EMAIL -->
+<div class="contact-card">
+    <img src="{{ url_for('static', filename='liver/images/email.png') }}" class="contact-icon">
+    <h3>Email</h3>
+    <p>Official communication & project proposals</p>
+    <a class="card-btn" href="mailto:shivam.workwithai@gmail.com">
+        Send Email
+    </a>
+</div>
+
+<!-- WHATSAPP -->
+<div class="contact-card">
+    <img src="{{ url_for('static', filename='liver/images/whatsapp.png') }}" class="contact-icon">
+    <h3>WhatsApp</h3>
+    <p>Quick support & instant queries</p>
+    <a class="card-btn" target="_blank" href="https://wa.me/917068261278">
+        Open WhatsApp
+    </a>
+</div>
+
+<!-- INSTAGRAM -->
+<div class="contact-card">
+    <img src="{{ url_for('static', filename='liver/images/instagram.png') }}" class="contact-icon">
+    <h3>Instagram</h3>
+    <p>AI updates & behind-the-scenes content</p>
+    <a class="card-btn" target="_blank"
+       href="https://www.instagram.com/shivam_01114">
+        Visit Profile
+    </a>
+</div>
+
+<!-- LINKEDIN -->
+<div class="contact-card">
+    <img src="{{ url_for('static', filename='liver/images/linkedin.png') }}" class="contact-icon">
+    <h3>LinkedIn</h3>
+    <p>Professional networking & career opportunities</p>
+    <a class="card-btn" target="_blank"
+       href="https://www.linkedin.com/in/shivamsingh2411">
+        View LinkedIn
+    </a>
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+<div class="footer-note">
+    © 2026 Yakrit Drishti AI • Advanced Medical AI Interface
+</div>
+
+</div>
+
+
+<!-- OPTIONAL SMOOTH ANIMATION -->
+<script>
+document.querySelectorAll(".contact-card").forEach((card, i) => {
+    card.style.opacity = "0";
+    card.style.transform = "translateY(40px)";
+
+    setTimeout(() => {
+        card.style.transition = "0.6s ease";
+        card.style.opacity = "1";
+        card.style.transform = "translateY(0)";
+    }, i * 150);
+});
+</script>
+
+</body>
+</html>

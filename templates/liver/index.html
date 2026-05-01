@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Liver Disease Prediction System</title>
+
+    <!-- ✅ FIXED STATIC PATH -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='liver/css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='liver/css/dark-theme.css') }}">
+
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar">
+    <div class="logo">
+        <span class="logo-main">यकृत्‌दृष्टि</span>
+        <span class="logo-sub">AI Liver Diagnostic System</span>
+    </div>
+
+    <ul>
+        <!-- ✅ FIXED ROUTES -->
+        <li><a href="{{ url_for('main.home') }}">Home</a></li>
+        <li><a href="{{ url_for('liver.liver_home') }}">Predict</a></li>
+        <li><a href="{{ url_for('liver.liver_report') }}">Report</a></li>
+        <li><a href="{{ url_for('liver.liver_about') }}">About</a></li>
+        <li><a href="{{ url_for('liver.liver_contact') }}">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- ================= HERO SECTION ================= -->
+<section class="hero">
+
+    <div class="hero-text">
+        <h1>AI-Powered Liver Disease Prediction</h1>
+
+        <p>
+            Early detection of liver disease using Machine Learning & clinical data.
+            Fast. Accurate. Reliable.
+        </p>
+
+        <!-- ✅ FIXED BUTTON -->
+        <a href="{{ url_for('liver.liver_home') }}" class="btn-primary">
+            Start Prediction
+        </a>
+    </div>
+
+    <div class="hero-image">
+        <!-- ✅ FIXED IMAGE PATH -->
+        <img src="{{ url_for('static', filename='liver/images/hero-medical.jpg') }}" alt="Medical AI">
+    </div>
+
+</section>
+
+<!-- ================= FEATURES ================= -->
+<section class="features">
+
+    <div class="card">
+        <h3>🧠 AI Diagnosis</h3>
+        <p>Random Forest ML model trained on clinical liver data.</p>
+    </div>
+
+    <div class="card">
+        <h3>⚡ Instant Results</h3>
+        <p>Get prediction results in real-time.</p>
+    </div>
+
+    <div class="card">
+        <h3>🔬 Medical Accuracy</h3>
+        <p>Optimized with SMOTE & feature scaling.</p>
+    </div>
+
+</section>
+
+<!-- ================= EXTRA SECTION (UPGRADE 🔥) ================= -->
+<section class="features">
+
+    <div class="card">
+        <h3>📊 Smart Reports</h3>
+        <p>Detailed AI-generated reports with insights & recommendations.</p>
+    </div>
+
+    <div class="card">
+        <h3>🔊 AI Voice</h3>
+        <p>Listen to your diagnosis with intelligent voice explanation.</p>
+    </div>
+
+    <div class="card">
+        <h3>🗂 History Tracking</h3>
+        <p>View all previous predictions in your dashboard.</p>
+    </div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+    <p>© 2026 Yakrit Drishti AI | Advanced Medical Prediction System</p>
+</footer>
+
+</body>
+</html>

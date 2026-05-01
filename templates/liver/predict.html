@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Liver Disease Prediction</title>
+
+    <!-- ✅ FIXED STATIC PATH -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='liver/css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='liver/css/dark-theme.css') }}">
+</head>
+
+<body class="predict-body">
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar">
+    <div class="logo">
+        <span class="logo-main">यकृत्‌दृष्टि</span>
+        <span class="logo-sub">AI Liver Diagnostic System</span>
+    </div>
+
+    <ul class="nav-links">
+        <!-- ✅ FIXED ROUTES -->
+        <li><a href="{{ url_for('main.home') }}">Home</a></li>
+        <li><a href="{{ url_for('liver.liver_report') }}">Report</a></li>
+        <li><a href="{{ url_for('liver.liver_about') }}">About</a></li>
+        <li><a href="{{ url_for('liver.liver_contact') }}">Contact</a></li>
+    </ul>
+</nav>
+<!-- ========================================== -->
+
+<div class="predict-wrapper">
+
+    <!-- LEFT INFO PANEL -->
+    <section class="predict-info">
+        <h1>AI Liver Diagnostic System</h1>
+
+        <p class="subtitle">
+            Clinical decision support system using machine learning
+        </p>
+
+        <div class="steps">
+            <div class="step">
+                <span>1</span>
+                <p>Enter patient biochemical parameters</p>
+            </div>
+
+            <div class="step">
+                <span>2</span>
+                <p>AI analyzes liver health indicators</p>
+            </div>
+
+            <div class="step">
+                <span>3</span>
+                <p>Instant diagnostic prediction</p>
+            </div>
+        </div>
+
+        <div class="note">
+            ⚠ This tool is for academic & screening purposes only.
+        </div>
+
+        <div class="side-image-wrap">
+            <!-- ✅ FIXED IMAGE PATH -->
+            <img src="{{ url_for('static', filename='liver/images/medical-side.png') }}"
+                 alt="Medical AI Illustration"
+                 class="medical-3d">
+        </div>
+    </section>
+
+    <!-- RIGHT FORM PANEL -->
+    <section class="predict-panel">
+        <h2>Patient Test Parameters</h2>
+
+        <!-- ✅ FIXED FORM ACTION -->
+        <form id="predictForm"
+              class="predict-form"
+              action="{{ url_for('liver.liver_predict') }}"
+              method="POST"
+              style="opacity:0.3; pointer-events:none;">
+
+            <div class="grid">
+
+                <div>
+                    <label>Age</label>
+                    <input name="age" placeholder="e.g. 30" required>
+                </div>
+
+                <div>
+                    <label>Gender</label>
+                    <select name="gender" required>
+                        <option value="">Select</option>
+                        <option value="1">Male</option>
+                        <option value="0">Female</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Total Bilirubin</label>
+                    <input name="tb" placeholder="0.3 – 1.2 mg/dL" required>
+                </div>
+
+                <div>
+                    <label>Direct Bilirubin</label>
+                    <input name="db" placeholder="0 – 0.3 mg/dL" required>
+                </div>
+
+                <div>
+                    <label>Alkaline Phosphotase</label>
+                    <input name="alk" placeholder="44 – 147 U/L" required>
+                </div>
+
+                <div>
+                    <label>ALT (SGPT)</label>
+                    <input name="alt" placeholder="7 – 56 U/L" required>
+                </div>
+
+                <div>
+                    <label>AST (SGOT)</label>
+                    <input name="ast" placeholder="10 – 40 U/L" required>
+                </div>
+
+                <div>
+                    <label>Total Proteins</label>
+                    <input name="tp" placeholder="6.0 – 8.3 g/dL" required>
+                </div>
+
+                <div>
+                    <label>Albumin</label>
+                    <input name="albumin" placeholder="3.5 – 5.0 g/dL" required>
+                </div>
+
+                <div>
+                    <label>A/G Ratio</label>
+                    <input name="agr" placeholder="1.0 – 2.2" required>
+                </div>
+
+            </div>
+
+            <button type="submit" class="analyze-btn">
+                Analyze Report
+            </button>
+
+            <div class="demo-actions">
+                <button type="button" onclick="demoDisease()" class="demo danger">
+                    Demo – Disease
+                </button>
+
+                <button type="button" onclick="demoSafe()" class="demo safe">
+                    Demo – Safe
+                </button>
+
+                <button type="button" onclick="clearForm()" class="demo clear">
+                    Clear
+                </button>
+            </div>
+
+        </form>
+    </section>
+
+</div>
+
+<!-- ================= PATIENT DETAILS MODAL ================= -->
+<div id="patientModal" class="popup">
+    <div class="popup-box">
+        <h2>🧑 Patient Details</h2>
+
+        <input id="pname" placeholder="Patient Name" required>
+        <input id="page" placeholder="Age" required>
+
+        <select id="pgender">
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+
+        <button onclick="savePatient()">Continue</button>
+    </div>
+</div>
+<!-- ========================================================= -->
+
+<!-- RESULT POPUP -->
+<div id="resultPopup" class="popup hidden">
+    <div class="popup-box">
+        <h2 id="popupTitle"></h2>
+        <p id="popupMessage"></p>
+
+        <div class="risk-section">
+            <h3>📊 Risk Score</h3>
+
+            <div class="risk-value" id="riskValue">0%</div>
+
+            <div class="gauge">
+                <div class="gauge-fill" id="gaugeFill"></div>
+            </div>
+        </div>
+
+        <button onclick="closePopup()">Close</button>
+    </div>
+</div>
+
+<!-- ✅ FIXED JS PATH -->
+<script src="{{ url_for('static', filename='liver/js/main.js') }}"></script>
+
+</body>
+</html>

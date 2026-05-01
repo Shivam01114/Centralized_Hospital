@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Medical Report</title>
+
+    <!-- ✅ FIXED STATIC CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='liver/css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='liver/css/dark-theme.css') }}">
+
+    <!-- ✅ DROPDOWN FIX -->
+    <style>
+        #voiceLang {
+            background-color: #0f172a;
+            color: #ffffff;
+        }
+
+        #voiceLang option {
+            background-color: #0f172a;
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body class="report-body">
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar">
+    <div class="logo">
+        <span class="logo-main">यकृत्‌दृष्टि</span>
+        <span class="logo-sub">AI Liver Medical Report</span>
+    </div>
+
+    <ul class="nav-links">
+        <!-- ✅ FIXED ROUTES -->
+        <li><a href="{{ url_for('main.home') }}">Home</a></li>
+        <li><a href="{{ url_for('liver.liver_home') }}">Predict</a></li>
+        <li><a href="{{ url_for('liver.liver_about') }}">About</a></li>
+        <li><a href="{{ url_for('liver.liver_contact') }}">Contact</a></li>
+    </ul>
+</nav>
+
+
+<!-- ================= REPORT SECTION ================= -->
+<section class="report-container" id="reportSection">
+
+    <h1>🧾 AI Liver Health Report</h1>
+
+    <!-- ================= PATIENT ================= -->
+    <div class="report-card">
+        <h2>Patient Information</h2>
+        <p><strong>Name:</strong> <span id="patientName">--</span></p>
+        <p><strong>Age:</strong> <span id="patientAge">--</span></p>
+        <p><strong>Gender:</strong> <span id="patientGender">--</span></p>
+    </div>
+
+    <!-- ================= DIAGNOSIS ================= -->
+    <div class="report-card">
+        <h2>Diagnosis Summary</h2>
+        <p id="reportDiagnosis">No data available</p>
+        <p>
+            <strong>Risk Score:</strong>
+            <span id="reportRisk">--%</span>
+        </p>
+    </div>
+
+    <!-- ================= PARAMETERS ================= -->
+    <div class="report-card">
+        <h2>Clinical Parameters</h2>
+        <ul id="parameterList">
+            <!-- JS will fill -->
+        </ul>
+    </div>
+
+    <!-- ================= RECOMMENDATIONS ================= -->
+    <div class="report-card">
+        <h2>AI Recommendations</h2>
+        <p id="dietPlan"></p>
+        <p id="workoutPlan"></p>
+    </div>
+
+    <!-- ================= ACTIONS ================= -->
+    <div class="report-actions">
+
+        <select id="voiceLang">
+            <option value="en">English</option>
+            <option value="hi">Hindi</option>
+        </select>
+
+        <button onclick="playVoiceReport()">
+            🔊 AI Voice Explanation
+        </button>
+
+        <button onclick="openDownloadConfirm()">
+            📄 Download Medical Report
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PDF CONFIRM POPUP ================= -->
+<div id="pdfConfirmPopup" class="popup hidden">
+    <div class="popup-box">
+        <h3>🧾 Download Medical Report</h3>
+
+        <p>
+            Do you want to generate and download this AI-based medical report?
+        </p>
+
+        <button onclick="confirmPDF()">Yes, Generate PDF</button>
+        <button onclick="closePDFPopup()">Cancel</button>
+    </div>
+</div>
+
+
+<!-- ================= SCRIPTS ================= -->
+
+<!-- ✅ LOAD jsPDF FIRST -->
+<script src="https://unpkg.com/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+
+<!-- ✅ FIXED JS PATH -->
+<script src="{{ url_for('static', filename='liver/js/report.js') }}"></script>
+
+</body>
+</html>

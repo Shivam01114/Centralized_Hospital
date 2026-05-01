@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Select Disease Prediction</title>
+
+<style>
+
+/* ===== GLOBAL ===== */
+body{
+    margin:0;
+    font-family:Segoe UI, sans-serif;
+    background:linear-gradient(135deg,#020202,#0a0a0a,#120006);
+    color:white;
+}
+
+/* ===== BACKGROUND ===== */
+body::before{
+    content:"";
+    position:absolute;
+    width:200%;
+    height:200%;
+    background:radial-gradient(circle, rgba(255,0,0,0.12) 1px, transparent 1px);
+    background-size:40px 40px;
+    animation:moveBg 20s linear infinite;
+    z-index:-1;
+}
+
+@keyframes moveBg{
+    from{transform:translate(0,0)}
+    to{transform:translate(-200px,-200px)}
+}
+
+/* ===== HEADER ===== */
+.title{
+    text-align:center;
+    font-size:30px;
+    margin-top:30px;
+    color:#ff4b5c;
+}
+
+.subtitle{
+    text-align:center;
+    color:#aaa;
+    font-size:14px;
+    margin-bottom:25px;
+}
+
+/* ===== NAV ===== */
+.nav{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.nav button{
+    margin:5px;
+    padding:10px 20px;
+    border:none;
+    border-radius:25px;
+    background:linear-gradient(90deg,#ff2f45,#ffd84d);
+    color:black;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* ===== GRID ===== */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:25px;
+    padding:40px;
+}
+
+/* ===== CARD ===== */
+.card{
+    display:block;
+    background:rgba(15,15,15,0.95);
+    border-radius:20px;
+    padding:30px;
+    text-align:center;
+    border:1px solid rgba(255,0,0,0.3);
+    box-shadow:0 0 25px rgba(255,0,0,0.25);
+    transition:0.3s;
+    text-decoration:none;
+    color:white;
+}
+
+.card:hover{
+    transform:translateY(-10px) scale(1.05);
+    box-shadow:0 0 45px rgba(255,0,0,0.7);
+}
+
+/* DISABLED */
+.disabled{
+    opacity:0.4;
+    cursor:not-allowed;
+}
+
+/* ICON */
+.icon{
+    font-size:42px;
+    margin-bottom:12px;
+}
+
+/* TEXT */
+.card h3{
+    margin:10px 0;
+    color:#ffd84d;
+}
+
+.card p{
+    font-size:13px;
+    color:#aaa;
+}
+
+/* ECG */
+.ecg{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    height:80px;
+}
+
+.ecg-line{
+    width:200%;
+    height:100%;
+    background:linear-gradient(90deg,transparent,red,transparent);
+    animation:ecgMove 1.2s linear infinite;
+}
+
+@keyframes ecgMove{
+    from{transform:translateX(0)}
+    to{transform:translateX(-50%)}
+}
+
+</style>
+</head>
+
+<body>
+
+<h1 class="title">🧠 AI Disease Prediction</h1>
+<p class="subtitle">Select a module to begin intelligent diagnosis</p>
+
+<!-- NAV -->
+<div class="nav">
+    <button onclick="window.location.href='{{ url_for('main.home') }}'">⬅ Home</button>
+    <button onclick="window.location.href='{{ url_for('main.history') }}'">📊 History</button>
+</div>
+
+<div class="grid">
+
+<!-- ❤️ HEART -->
+<a href="{{ url_for('heart.heart_home') }}" class="card">
+    <div class="icon">❤️</div>
+    <h3>Heart Disease</h3>
+    <p>Cardiovascular risk analysis using AI</p>
+</a>
+
+<!-- 🧪 LIVER -->
+<a href="{{ url_for('liver.liver_home') }}" class="card">
+    <div class="icon">🧪</div>
+    <h3>Liver Disease</h3>
+    <p>Liver health prediction system</p>
+</a>
+
+<!-- FUTURE -->
+<div class="card disabled" onclick="alert('Coming Soon 🚀')">
+    <div class="icon">🩸</div>
+    <h3>Diabetes</h3>
+    <p>Coming soon</p>
+</div>
+
+<div class="card disabled" onclick="alert('Coming Soon 🚀')">
+    <div class="icon">🎗️</div>
+    <h3>Breast Cancer</h3>
+    <p>Coming soon</p>
+</div>
+
+<div class="card disabled" onclick="alert('Coming Soon 🚀')">
+    <div class="icon">🧬</div>
+    <h3>Blood Disease</h3>
+    <p>Coming soon</p>
+</div>
+
+</div>
+
+<!-- ECG -->
+<div class="ecg">
+    <div class="ecg-line"></div>
+</div>
+
+<!-- 🔥 SESSION FIX -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const patient = "{{ session.get('patient_id') }}";
+
+    if(!patient){
+        alert("⚠ Please enter patient details first!");
+        window.location.href = "{{ url_for('main.home') }}";
+    }
+
+});
+</script>
+
+</body>
+</html>

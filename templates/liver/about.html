@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>About | यकृत्‌दृष्टि AI</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='liver/css/style.css') }}">
+<style>
+/* ============================
+   GLOBAL RESET
+============================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+/* ============================
+   BODY – DARK MEDICAL LAB
+============================ */
+body {
+    background: radial-gradient(circle at top, #0b1d33, #020812 70%);
+    color: #f1f6ff;
+    overflow-x: hidden;
+}
+
+/* subtle animated grid */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: -1;
+}
+
+/* ============================
+   NAVBAR
+============================ */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 60px;
+    background: rgba(5, 15, 30, 0.75);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #dbe7ff;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    text-shadow: 0 0 6px rgba(43,124,255,0.35);
+    transition: all 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    color: #ffffff;
+    text-shadow:
+        0 0 12px rgba(43,124,255,0.9),
+        0 0 22px rgba(255,59,59,0.6);
+}
+
+/* ============================
+   LOGO
+============================ */
+.logo-main {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #ff3b3b;
+    text-shadow: 0 0 18px rgba(255,59,59,0.8);
+}
+
+.logo-sub {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #9bbcff;
+    text-transform: uppercase;
+}
+
+/* ============================
+   CONTAINER
+============================ */
+.about-wrapper {
+    max-width: 1300px;
+    margin: auto;
+    padding: 90px 50px;
+}
+
+/* ============================
+   HERO SECTION
+============================ */
+.hero {
+    text-align: center;
+    margin-bottom: 120px;
+}
+
+.hero h1 {
+    font-size: 58px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: #ffffff;
+    text-shadow:
+        0 0 25px rgba(43,124,255,0.7),
+        0 0 45px rgba(255,59,59,0.5);
+}
+
+.hero span {
+    display: block;
+    margin-top: 15px;
+    font-size: 18px;
+    color: #9bbcff;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.9;
+}
+
+.hero::after {
+    content: "";
+    display: block;
+    width: 220px;
+    height: 4px;
+    margin: 35px auto 0;
+    background: linear-gradient(90deg, #ff3b3b, #2b7cff);
+    box-shadow: 0 0 25px rgba(255,59,59,0.8);
+}
+
+/* ============================
+   GLASS CARD BASE
+============================ */
+.card {
+    background: rgba(10, 25, 50, 0.75);
+    backdrop-filter: blur(18px);
+    border-radius: 26px;
+    padding: 45px;
+    margin-bottom: 80px;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow:
+        0 0 40px rgba(43,124,255,0.25),
+        inset 0 0 30px rgba(255,255,255,0.03);
+    transition: all 0.4s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow:
+        0 0 60px rgba(43,124,255,0.5),
+        inset 0 0 40px rgba(255,255,255,0.05);
+}
+
+.card h2 {
+    font-size: 34px;
+    margin-bottom: 18px;
+    color: #ff3b3b;
+    text-shadow: 0 0 20px rgba(255,59,59,0.6);
+}
+
+.card p {
+    font-size: 17px;
+    line-height: 1.9;
+    color: #f1f6ff;
+}
+
+/* ============================
+   FEATURES GRID
+============================ */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.feature {
+    padding: 35px;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #071a33, #020a18);
+    border: 1px solid rgba(255,255,255,0.07);
+    box-shadow: 0 0 25px rgba(43,124,255,0.25);
+    transition: all 0.35s ease;
+}
+
+.feature:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 45px rgba(43,124,255,0.6);
+}
+
+.feature h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    color: #4cd3c2;
+}
+
+.feature p {
+    font-size: 15px;
+    color: #dce6ff;
+    line-height: 1.7;
+}
+
+/* ============================
+   STATS BAR
+============================ */
+.stats {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.stat {
+    flex: 1;
+    text-align: center;
+    padding: 30px;
+    border-radius: 18px;
+    background: rgba(5, 15, 30, 0.9);
+    box-shadow: inset 0 0 25px rgba(255,255,255,0.05);
+}
+
+.stat h4 {
+    font-size: 38px;
+    color: #ff3b3b;
+    text-shadow: 0 0 15px rgba(255,59,59,0.8);
+}
+
+.stat span {
+    display: block;
+    margin-top: 8px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #9bbcff;
+}
+
+/* ============================
+   AI FLOW
+============================ */
+.flow {
+    margin-top: 35px;
+}
+
+.flow-step {
+    border-left: 4px solid #2b7cff;
+    padding-left: 22px;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.flow-step::before {
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: 5px;
+    width: 16px;
+    height: 16px;
+    background: #ff3b3b;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(255,59,59,0.9);
+}
+
+.flow-step h4 {
+    font-size: 20px;
+    color: #7fb3ff;
+}
+
+.flow-step p {
+    font-size: 15px;
+    color: #eaf1ff;
+}
+
+/* ============================
+   CTA
+============================ */
+.cta {
+    text-align: center;
+    margin-top: 120px;
+}
+
+.cta h2 {
+    font-size: 42px;
+    margin-bottom: 25px;
+}
+
+.cta button {
+    padding: 18px 45px;
+    border-radius: 50px;
+    border: none;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    background: linear-gradient(135deg, #ff3b3b, #2b7cff);
+    color: white;
+    box-shadow: 0 0 40px rgba(255,59,59,0.7);
+    transition: all 0.35s ease;
+}
+
+.cta button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 65px rgba(43,124,255,0.9);
+}
+</style>
+</head>
+
+<body>
+
+<!-- ✅ UPDATED NAVBAR -->
+<nav class="navbar">
+    <div>
+        <div class="logo-main">यकृत्‌दृष्टि</div>
+        <div class="logo-sub">AI Liver Diagnostic System</div>
+    </div>
+
+    <ul>
+        <li><a href="{{ url_for('main.home') }}">Home</a></li>
+        <li><a href="{{ url_for('liver.liver_home') }}">Predict</a></li>
+        <li><a href="{{ url_for('liver.liver_report') }}">Report</a></li>
+        <li><a href="{{ url_for('main.history') }}">History</a></li>
+    </ul>
+</nav>
+
+<div class="about-wrapper">
+
+    <section class="hero">
+        <h1>Yakrit Drishti AI</h1>
+        <span>
+            AI powered liver diagnostic system for early disease detection.
+        </span>
+    </section>
+
+    <section class="card">
+        <h2>Project Vision</h2>
+        <p>AI based healthcare system for liver analysis.</p>
+    </section>
+
+    <section class="card">
+        <h2>Core Features</h2>
+        <div class="grid">
+            <div class="feature"><h3>AI Prediction</h3></div>
+            <div class="feature"><h3>PDF Reports</h3></div>
+            <div class="feature"><h3>Voice AI</h3></div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <!-- ✅ FIXED BUTTON -->
+        <button onclick="location.href='{{ url_for('liver.liver_home') }}'">
+            Start Diagnosis
+        </button>
+    </section>
+
+</div>
+
+</body>
+</html>
